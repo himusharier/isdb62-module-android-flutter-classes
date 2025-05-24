@@ -8,7 +8,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.employeecrudwithapi"
-        minSdk = 33
+        // Changed minSdk to 28 to support devices like Samsung Galaxy M10 (Android 9/API 28)
+        minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         btnListPage = findViewById(R.id.btnListPage);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8081/") // for emulator
-                // .baseUrl("http://172.28.64.1:8081/") // Give you computers IP
+//                .baseUrl("http://10.0.2.2:8081/") // for emulator
+//                 .baseUrl("http://172.28.64.1:8081/") // Give you computers IP
+                 .baseUrl("http://192.168.0.79:8081/") // Give you computers IP
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
