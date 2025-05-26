@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +17,8 @@ import com.example.employeecrudwithapi.R;
 import com.example.employeecrudwithapi.adapter.EmployeeAdapter;
 import com.example.employeecrudwithapi.model.Employee;
 import com.example.employeecrudwithapi.service.ApiService;
+import com.example.employeecrudwithapi.util.ApiClient;
+import com.example.employeecrudwithapi.util.EmployeeDiffCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +26,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EmployeeListActivity extends AppCompatActivity {
 
@@ -42,8 +44,12 @@ public class EmployeeListActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Enable the Up button (back arrow) in the ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        employeeAdapter = new EmployeeAdapter(employeeList);
+        employeeAdapter = new EmployeeAdapter(this, employeeList);
         recyclerView = findViewById(R.id.employeeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(employeeAdapter);
@@ -51,19 +57,19 @@ public class EmployeeListActivity extends AppCompatActivity {
         fetchEmployees();
     }
 
-    private void fetchEmployees() {
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://10.0.2.2:8081/")
-                .baseUrl("http://192.168.0.79:8081/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 
-        ApiService apiService = retrofit.create(ApiService.class);
+    private void fetchEmployees() {
+        ApiService apiService = ApiClient.getApiService();
         Call<List<Employee>> call = apiService.getAllEmployee();
 
-        call.enqueue(new Callback<List<Employee>>() {
+        call.enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<List<Employee>> call, Response<List<Employee>> response) {
+            public void onResponse(@NonNull Call<List<Employee>> call, @NonNull Response<List<Employee>> response) {
                 if (response.isSuccessful()) {
                     List<Employee> employees = response.body();
                     assert employees != null;
@@ -71,16 +77,20 @@ public class EmployeeListActivity extends AppCompatActivity {
                         Log.d(TAG, "ID: " + emp.getId() + ", Name: "
                                 + emp.getName() + ", Designation: " + emp.getDesignation());
                     }
+                    DiffUtil.DiffResult result = DiffUtil.calculateDiff(new EmployeeDiffCallback(employeeList, employees));
                     employeeList.clear();
                     employeeList.addAll(employees);
-                    employeeAdapter.notifyDataSetChanged();
+                    // The below code does change the whole content of the RecyclerView which is inefficient
+                    // employeeAdapter.notifyDataSetChanged();
+                    // Rather use this one
+                    result.dispatchUpdatesTo(employeeAdapter);
                 } else {
                     Log.e(TAG, "API Response Error: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Employee>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Employee>> call, @NonNull Throwable t) {
                 Log.e(TAG, "API Call Failed: " + t.getMessage());
             }
         });
