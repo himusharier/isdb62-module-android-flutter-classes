@@ -1,0 +1,20 @@
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    username: postgres
+#    url: jdbc:postgresql://localhost:5432/himu_database
+#    password: isdb62
+#  application:
+#    name: project-with-database
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    properties:
+#      hibernate:
+#        format_sql: 'true'
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: 'true'
+#  profiles:
+#    active: dev
+#server:
+#  port: '8081'
