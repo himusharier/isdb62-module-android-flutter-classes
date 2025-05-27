@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Student CRUD App</string>
+    <string name="app_title">Student CRUD App</string>
+    <string name="home_add_button">Add Student</string>
+    <string name="home_view_button">View Student List</string>
+</resources>
