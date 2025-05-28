@@ -9,11 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.himusharier.studentcrudapp.R;
+import com.himusharier.studentcrudapp.adapter.StudentAdapter;
 import com.himusharier.studentcrudapp.model.Student;
 import com.himusharier.studentcrudapp.service.ApiService;
 import com.himusharier.studentcrudapp.util.ApiClient;
+import com.himusharier.studentcrudapp.util.StudentDiffCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +29,10 @@ import retrofit2.Response;
 
 public class ViewStudentActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmployeeListActivity";
+    private static final String TAG = "ViewStudentActivity";
     private RecyclerView recyclerView;
-    private EmployeeAdapter employeeAdapter;
-    private List<Student>studentList = new ArrayList<>();
+    private StudentAdapter studentAdapter;
+    private final List<Student>studentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,20 @@ public class ViewStudentActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        studentAdapter = new StudentAdapter(this, studentList);
+        recyclerView = findViewById(R.id.studentRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(studentAdapter);
+
+        fetchEmployees();
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     private void fetchEmployees() {
@@ -56,23 +75,27 @@ public class ViewStudentActivity extends AppCompatActivity {
                     List<Student> students = response.body();
                     assert students != null;
                     for (Student student : students) {
-                        Log.d(TAG, "ID: " + student.getId() + ", Name: "
-                                + student.getName() + ", Designation: " + student.getDesignation());
+                        Log.d(TAG, "ID: " + student.getId() +
+                                ", Name: " + student.getName() +
+                                ", Class: " + student.getClazz() +
+                                ", Date of Birth: " + student.getDob() +
+                                ", Age: " + student.getAge() +
+                                ", Address: " + student.getAddress());
                     }
-                    DiffUtil.DiffResult result = DiffUtil.calculateDiff(new EmployeeDiffCallback(employeeList, employees));
-                    employeeList.clear();
-                    employeeList.addAll(employees);
+                    DiffUtil.DiffResult result = DiffUtil.calculateDiff(new StudentDiffCallback(studentList, students));
+                    studentList.clear();
+                    studentList.addAll(students);
                     // The below code does change the whole content of the RecyclerView which is inefficient
                     // employeeAdapter.notifyDataSetChanged();
                     // Rather use this one
-                    result.dispatchUpdatesTo(employeeAdapter);
+                    result.dispatchUpdatesTo(studentAdapter);
                 } else {
                     Log.e(TAG, "API Response Error: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Employee>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<Student>> call, @NonNull Throwable t) {
                 Log.e(TAG, "API Call Failed: " + t.getMessage());
             }
         });

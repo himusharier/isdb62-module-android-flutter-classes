@@ -21,7 +21,7 @@ public interface ApiService {
     Call<List<Student>> getAllStudent();
 
     @PUT("student/{id}")
-    Call<Student> studentStudent(@Path("id") int id, @Body Student student);
+    Call<Student> updateStudent(@Path("id") int id, @Body Student student);
 
     @DELETE("student/{id}")
     Call<Void> deleteStudent(@Path("id") int id);

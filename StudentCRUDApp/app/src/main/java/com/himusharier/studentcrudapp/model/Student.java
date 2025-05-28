@@ -9,7 +9,7 @@ public class Student {
 	private String clazz;
 	private int age;
 	private String address;
-	private LocalDate dob;
+	private String dob;
 
 	public int getId() {
 		return id;
@@ -51,11 +51,11 @@ public class Student {
 		this.address = address;
 	}
 
-	public LocalDate getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	

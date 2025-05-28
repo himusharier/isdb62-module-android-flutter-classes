@@ -3,4 +3,13 @@
     <string name="app_title">Student CRUD App</string>
     <string name="home_add_button">Add Student</string>
     <string name="home_view_button">View Student List</string>
+    
+    <string name="nameText">Name</string>
+    <string name="classText">Class</string>
+    <string name="dobText">Date of Birth</string>
+    <string name="ageText">Age</string>
+    <string name="addressText">Address</string>
+    <string name="updateButton">Update</string>
+    <string name="deleteButton">Delete</string>
+    <string name="saveButton">Save</string>
 </resources>
