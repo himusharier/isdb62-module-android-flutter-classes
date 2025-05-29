@@ -1,86 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="12dp">
 
+    <!-- Name -->
     <TextView
         android:id="@+id/nameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="@string/nameText"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/updateButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Class -->
     <TextView
         android:id="@+id/classText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/classText"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/nameText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameText" />
 
+    <!-- DOB -->
     <TextView
         android:id="@+id/dobText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/dobText"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/nameText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/classText" />
 
+    <!-- Age -->
     <TextView
         android:id="@+id/ageText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/ageText"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/nameText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dobText" />
 
+    <!-- Address -->
     <TextView
         android:id="@+id/addressText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/addressText"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/nameText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ageText" />
 
-    <LinearLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- Update Icon (Top Right) -->
+    <ImageView
+        android:id="@+id/updateButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="#009688"
+        android:clickable="true"
+        android:contentDescription="@string/updateButton"
+        android:focusable="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_update"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Delete Icon (Below Update Icon) -->
+    <ImageView
+        android:id="@+id/deleteButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:background="#E91E63"
+        android:clickable="true"
+        android:contentDescription="@string/deleteButton"
+        android:focusable="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateButton" />
+
+    <!-- Horizontal Divider Line -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#BDBDBD"
+        app:layout_constraintTop_toBottomOf="@id/addressText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addressText">
-
-        <Button
-            android:id="@+id/updateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/updateButton" />
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/deleteButton" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

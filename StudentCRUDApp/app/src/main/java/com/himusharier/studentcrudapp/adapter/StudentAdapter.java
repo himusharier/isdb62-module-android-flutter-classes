@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -111,7 +112,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     public static class StudentViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, classText, dobText, ageText, addressText;
-        Button updateButton, deleteButton;
+//        Button updateButton, deleteButton;
+        ImageView updateButton, deleteButton;
 
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
