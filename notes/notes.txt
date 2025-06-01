@@ -1,7 +1,18 @@
-Monthly Exam:
+Monthly Exam: (complete)
 ------------------------------->
-Evidence: Spring Boot, 
+Evidence: Spring Boot. 
 (14-05-2025)
 
 Lab: Spring Boot Project.
 (19-05-2025)
+
+
+
+
+Monthly Exam: (due)
+------------------------------->
+Evidence: Android Full.
+(19-06-2025)
+
+Lab: Spring Boot Project.
+()
