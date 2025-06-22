@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:employee_crud/models/employee.dart';
-import 'package:employee_crud/models/database_service.dart';
+import 'package:employee_crud/services/database_service.dart';
 
 class AddEmployeeScreen extends StatefulWidget {
   const AddEmployeeScreen({super.key});

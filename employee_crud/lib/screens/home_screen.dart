@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:employee_crud/screens/employee_screen.dart';
+import 'package:employee_crud/screens/student_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,6 +47,18 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const EmployeeScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.people),
+              title: const Text('Student'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const StudentScreen(),
                   ),
                 );
               },
