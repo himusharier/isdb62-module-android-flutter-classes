@@ -31,8 +31,8 @@ class DatabaseService {
             name TEXT NOT NULL,
             email TEXT NOT NULL,            
             gender TEXT NOT NULL,            
-            country TEXT NOT NULL,            
-            image_path TEXT,            
+            country TEXT NOT NULL,
+            imagePath TEXT,
             hobbies TEXT
           )
         ''');
