@@ -6,5 +6,6 @@ CREATE TABLE employees_sb_jdbc (
     age INT,
     address TEXT,
     dob DATE,
-    salary DECIMAL(10, 2)
+    salary DECIMAL(10, 2),
+    image VARCHAR(200)
 );

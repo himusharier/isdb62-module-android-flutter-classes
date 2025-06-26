@@ -37,6 +37,7 @@ public class EmployeeRepository {
 		parameters.put("address", employee.getAddress());
 		parameters.put("dob", employee.getDob());
 		parameters.put("salary", employee.getSalary());
+		parameters.put("image", employee.getImage());
 
 		Number key = employeeInsert.executeAndReturnKey(parameters);
 		return key.intValue();
@@ -57,7 +58,7 @@ public class EmployeeRepository {
 		public Employee mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 			return new Employee(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"),
 					resultSet.getString("designation"), resultSet.getInt("age"), resultSet.getString("address"),
-					resultSet.getObject("dob", LocalDate.class), resultSet.getDouble("salary"));
+					resultSet.getObject("dob", LocalDate.class), resultSet.getDouble("salary"), resultSet.getString("image"));
 		}
 	}
 
@@ -73,10 +74,10 @@ public class EmployeeRepository {
 
 	public int update(Employee employee) {
 		String sql = "UPDATE employees_sb_jdbc SET name = ?, email = ?, designation = ?, "
-				+ "age = ?, address = ?, dob = ?, salary = ? WHERE id = ?";
+				+ "age = ?, address = ?, dob = ?, salary = ?, image = ? WHERE id = ?";
 
 		return jdbcTemplate.update(sql, employee.getName(), employee.getEmail(), employee.getDesignation(),
-				employee.getAge(), employee.getAddress(), employee.getDob(), employee.getSalary(), employee.getId());
+				employee.getAge(), employee.getAddress(), employee.getDob(), employee.getSalary(), employee.getImage(), employee.getId());
 	}
 
 	public List<Employee> getEmployeeByName(String name) {

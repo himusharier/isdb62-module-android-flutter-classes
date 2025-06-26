@@ -21,5 +21,5 @@ public class Employee {
 	private String address;
 	private LocalDate dob;
 	private double salary;
-
+	private String image;
 }
