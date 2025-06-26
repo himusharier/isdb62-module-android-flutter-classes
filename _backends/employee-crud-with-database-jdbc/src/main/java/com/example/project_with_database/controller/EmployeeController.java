@@ -74,7 +74,7 @@ public class EmployeeController {
 			String savedFileName = storageService.storeFile(file);
 			String accessUrl = ServletUriComponentsBuilder
 					.fromCurrentContextPath()
-					.path("/imageUrl/")
+					.path("/imageurl/")
 					.path(savedFileName)
 					.toUriString();
 
