@@ -1,3 +1,4 @@
+import 'package:employee_crud/screens/online_employee_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_crud/screens/employee_screen.dart';
 import 'package:employee_crud/screens/student_screen.dart';
@@ -59,6 +60,18 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const StudentScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_pin_rounded),
+              title: const Text('Online Employee'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OnlineEmployeeScreen(),
                   ),
                 );
               },
