@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 //    private static final String BASE_URL = "http://10.0.2.2:8081/";
-    private static final String BASE_URL = "http://192.168.0.79:8081/"; // Actual IP Address
+    private static final String BASE_URL = "http://192.168.1.101:8081/"; // Actual IP Address
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {
@@ -23,7 +23,7 @@ public class ApiClient {
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return retrofit;
