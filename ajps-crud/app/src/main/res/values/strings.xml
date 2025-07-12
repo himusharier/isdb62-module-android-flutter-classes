@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AJPS CRUD</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">User Profile</string>
+    <string name="nav_header_subtitle">Welcome to AJPS CRUD</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
